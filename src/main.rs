@@ -19,7 +19,6 @@ fn main() {
 
     let mut buffer = Vec::<u8>::new();
     _ = file.read_to_end(&mut buffer);
-    println!("{:?}", buffer);
 
     let mut machine = machine::machine::Machine::new();
     machine.set_ram(0, buffer);
