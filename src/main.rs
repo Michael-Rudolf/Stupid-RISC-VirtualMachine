@@ -4,8 +4,6 @@ use std::io::prelude::*;
 
 mod instruction;
 mod machine;
-mod assembler;
-
 const HERZ: u16 = 500;
 
 fn main() {
@@ -24,7 +22,6 @@ fn main() {
     println!("{:?}", buffer);
 
     let mut machine = machine::machine::Machine::new();
-//change (please register)
     machine.set_ram(0, buffer);
     machine.general_registers[1] = 5;
 
