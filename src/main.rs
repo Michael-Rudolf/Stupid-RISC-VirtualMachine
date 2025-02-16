@@ -1,6 +1,7 @@
 use rfd::FileDialog;
 use std::fs::File;
 use std::io::prelude::*;
+use colored::Colorize;
 
 mod instruction;
 mod machine;

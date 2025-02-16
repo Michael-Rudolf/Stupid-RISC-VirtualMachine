@@ -2,6 +2,7 @@ use crate::machine::machine::Machine;
 use crate::instruction;
 use std::process::Command;
 use std::time::Instant;
+use colored::Colorize;
 
 impl Machine {
 
@@ -11,7 +12,7 @@ impl Machine {
             self.execute_line(herz);
         }
         let duration = Instant::now().duration_since(start_time);
-        println!("Execution finished after: {:?}", duration);
+        println!("{}", format!("Execution finished after: {:?}", duration).green());
     }
     pub fn execute_line(&mut self, herz: Option<u32>) {
         // Check halt bit & potentially avoid further execution
