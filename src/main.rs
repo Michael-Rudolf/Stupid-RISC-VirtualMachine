@@ -1,7 +1,6 @@
 use rfd::FileDialog;
 use std::fs::File;
 use std::io::prelude::*;
-use colored::Colorize;
 
 mod instruction;
 mod machine;
@@ -24,7 +23,6 @@ fn main() {
     let mut machine = machine::machine::Machine::new();
     machine.set_ram(0, buffer);
     machine.general_registers[1] = 5;
-
 
     machine.execute(Some(HERZ as u32));
 }
