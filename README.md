@@ -22,5 +22,7 @@ You can now put this into your program folder (Application folder in macOS, /etc
 You can make an alias in your bash/zsh/fish profile.
 For example (**change for your own system!**)
 ```shell
-alias sriscvm /etc/VirtualMachine
+sriscvm(){
+	(cd ~/path/to/VirtualMachine/Folder && ./VirtualMachine "$@")
+}
 ```
