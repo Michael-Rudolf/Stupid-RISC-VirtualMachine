@@ -28,77 +28,13 @@ pub const LOAD_BYTE_INSTRUCTION: u8 = 0b0110_0100;
 pub const STORE_BYTE_INSTRUCTION: u8 = 0b0111_0100;
 
 
-
+#[allow(dead_code)]
 pub const FLAGS_REGISTER: u8 = 12 + 128;
+#[allow(dead_code)]
 pub const EXEC_PTR_REGISTER: u8 = 15 + 128;
+#[allow(dead_code)]
 pub const EMPTY_ARGUMENT: u8 = 0;
 impl Instruction{
-    pub fn new(task: u8, arg0: u8, arg1: u8) -> Instruction{
-        Instruction{task, arg0, arg1}
-    }
-
-    pub fn to_binary(&self) -> Vec<u8>{
-        [self.task, self.arg0, self.arg1].to_vec()
-    }
-
-    pub fn from_string(instruction: String) -> Option<Instruction>{
-
-
-
-        let splitted = instruction.split_whitespace().collect::<Vec<&str>>();
-
-        let task_string = splitted[0].to_ascii_lowercase();
-
-        match splitted.len() {
-            1 => {
-                match task_string.as_ref() {
-                    "halt" => Some(Instruction::new(HALT_INSTRUCTION, FLAGS_REGISTER, EMPTY_ARGUMENT)),
-                    _ => None
-                }
-            },
-            2 => {
-                let arg1_lower = splitted[1].to_ascii_lowercase();
-                let arg1_string = arg1_lower.split_at(1);
-                let mut arg1: u8 = arg1_string.1.parse().ok()?;
-                if arg1_string.0 == "r" { arg1 |= 0b1000_0000; }
-
-                match task_string.as_ref() {
-                    "jmp" => Some(Instruction::new(JUMP_INSTRUCTION, EXEC_PTR_REGISTER, arg1)),
-                    _ => None
-                }
-            }
-            3 => {
-                let arg1_lower = splitted[1].to_ascii_lowercase();
-                // Store the modified string
-                let arg2_lower = splitted[2].to_ascii_lowercase();
-
-                let arg1_string = arg1_lower.split_at(1);
-                let arg2_string = arg2_lower.split_at(1);
-
-                let mut arg1: u8 = arg1_string.1.parse().ok()?;  // Use `ok()?` to avoid unwrap panic
-                let mut arg2: u8 = arg2_string.1.parse().ok()?;
-
-
-                if arg1_string.0 == "r" { arg1 |= 0b1000_0000; }
-                if arg2_string.0 == "r" { arg2 |= 0b1000_0000; }
-
-                match task_string.as_ref() {
-                    "add" => Some(Instruction::new(ADD_INSTRUCTION, arg1, arg2)),
-                    "sub" => Some(Instruction::new(SUB_INSTRUCTION, arg1, arg2)),
-                    "mul" => Some(Instruction::new(MUL_INSTRUCTION, arg1, arg2)),
-                    "div" => Some(Instruction::new(DIV_INSTRUCTION, arg1, arg2)),
-                    "mod" => Some(Instruction::new(MOD_INSTRUCTION, arg1, arg2)),
-                    "jmpz" => Some(Instruction::new(JUMP_ZERO_INSTRUCTION, arg1, arg2)),
-                    "mov" => Some(Instruction::new(MOVE_INSTRUCTION, arg1, arg2)),
-                    "ldb" => Some(Instruction::new(LOAD_BYTE_INSTRUCTION, arg1, arg2)),
-                    "stb" => Some(Instruction::new(STORE_BYTE_INSTRUCTION, arg1, arg2)),
-                    _ => None
-                }
-            }
-            _ => None,
-        }
-    }
-
 
     // Returns number of arguments and the name of the instruction
     pub fn name_of_instruction(task: u8, arg_1: u8, arg_2: u8) -> Option<String>{
