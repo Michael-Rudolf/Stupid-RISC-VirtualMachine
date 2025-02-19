@@ -23,6 +23,6 @@ You can make an alias in your bash/zsh/fish profile.
 For example (**change for your own system!**)
 ```shell
 sriscvm(){
-	(cd ~/Applications/ && ./VirtualMachine "$@")
+	(cd ~/path/to/VirtualMachine/Folder && ./VirtualMachine "$@")
 }
 ```
