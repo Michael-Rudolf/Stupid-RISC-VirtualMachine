@@ -18,7 +18,7 @@ cargo build
 Now, you can locate the binary, which should usually be in ```target/debug/VirtualMachine```.
 You can now put this into your program folder (Application folder in macOS, /etc in Linux, any in Windows).
 
-### Alias
+### Shell function
 You can make an alias in your bash/zsh/fish profile.
 For example (**change for your own system!**)
 ```shell
