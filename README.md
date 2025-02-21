@@ -27,13 +27,11 @@ sriscvm(){
     for arg in "$@"; do
         if [[ -d "$arg" || -f "$arg" ]]; then
             abs_path="$(realpath "$arg")"
-            echo "Converted $arg -> $abs_path"  # Debug print
             args+=("$abs_path")
         else
             args+=("$arg")
         fi
     done
-    echo "Final args: ${args[@]}"  # Debug print
     (cd ~/path/to/virtual_machine && ./VirtualMachine "${args[@]}")
 }
 ```
