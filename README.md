@@ -18,11 +18,20 @@ cargo build
 Now, you can locate the binary, which should usually be in ```target/debug/VirtualMachine```.
 You can now put this into your program folder (Application folder in macOS, /etc in Linux, any in Windows).
 
-### Alias
+### Shell function
 You can make an alias in your bash/zsh/fish profile.
 For example (**change for your own system!**)
 ```shell
 sriscvm(){
-	(cd ~/path/to/VirtualMachine/Folder && ./VirtualMachine "$@")
+    args=()
+    for arg in "$@"; do
+        if [[ -d "$arg" || -f "$arg" ]]; then
+            abs_path="$(realpath "$arg")"
+            args+=("$abs_path")
+        else
+            args+=("$arg")
+        fi
+    done
+    (cd ~/path/to/virtual_machine && ./VirtualMachine "${args[@]}")
 }
 ```
