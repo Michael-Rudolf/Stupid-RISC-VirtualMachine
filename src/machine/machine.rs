@@ -12,7 +12,7 @@ impl Machine {
     pub fn new() -> Machine {
         let memory: [u8; 4096] = [0; 4096];
         let general_registers: [i32; 12] = [0; 12];
-        Machine{memory, general_registers, flags: 0, stack_pointer: 0, frame_pointer: 0, execution_pointer: 0}
+        Machine{memory, general_registers, flags: 0, stack_pointer: (memory.len() as u32)-1, frame_pointer: 0, execution_pointer: 0}
     }
 
     pub fn set_ram(&mut self, address: usize, data: Vec<u8>) {
@@ -22,7 +22,7 @@ impl Machine {
     }
 
     pub fn data_of_register_by_value(&mut self, register: u8) -> i32 {
-        if register > 15 { panic!() }
+        if register > 15 { let error = format!("Couln't access register {} because it doesn't exist.", register); panic!("{}", error); }
         match register {
             12 => self.flags as i32,
             13 => self.stack_pointer as i32,

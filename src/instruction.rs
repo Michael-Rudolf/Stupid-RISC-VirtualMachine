@@ -22,6 +22,7 @@ pub const MOD_INSTRUCTION: u8 = 0b0100_0100;
 pub const HALT_INSTRUCTION: u8 = 0b0110_0000;
 pub const MOVE_INSTRUCTION: u8 = 0b0110_0001;
 pub const JUMP_INSTRUCTION: u8 = 0b0110_0010;
+pub const PUSH_BYTE_INSTRUCTION: u8 = 0b0110_0101;
 // Jumps to arg2 if arg1 is 0
 pub const JUMP_ZERO_INSTRUCTION: u8 = 0b0110_0011;
 pub const LOAD_BYTE_INSTRUCTION: u8 = 0b0110_0100;
@@ -51,6 +52,7 @@ impl Instruction{
             HALT_INSTRUCTION => Some("halt ".to_string()),
             MOVE_INSTRUCTION => Some("mov ".to_string() + arg_1_text + arg_2_text),
             JUMP_INSTRUCTION => Some("jmp ".to_string() + arg_2_text),
+            PUSH_BYTE_INSTRUCTION => Some("pushb ".to_string() + arg_1_text + arg_2_text),
             JUMP_ZERO_INSTRUCTION => Some("jmpz ".to_string() + arg_1_text + arg_2_text),
             LOAD_BYTE_INSTRUCTION => Some("ldb ".to_string() + arg_1_text + arg_2_text),
             STORE_BYTE_INSTRUCTION => Some("stb ".to_string() + arg_1_text + arg_2_text),

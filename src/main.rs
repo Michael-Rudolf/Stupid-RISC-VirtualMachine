@@ -12,8 +12,9 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     let mut herz: Option<u32> = None;
     let mut input_path: PathBuf = Default::default();
+    let mut memory_storage_path: Option<PathBuf> = None;
 
-    get_inputs(args, &mut input_path, &mut herz);
+    get_inputs(args, &mut input_path, &mut memory_storage_path, &mut herz);
 
     // Open the path in read-only mode, returns `io::Result<File>`
     let mut file = match File::open(&input_path) {
@@ -28,10 +29,17 @@ fn main() {
     machine.set_ram(0, buffer);
 
     machine.execute(herz);
+
+    if memory_storage_path.is_some() {
+
+        println!("astoring -ms {:?}", memory_storage_path.clone().unwrap());
+        let binary_file = File::create(memory_storage_path.unwrap());
+        _ = binary_file.unwrap().write_all(&machine.memory);
+    }
 }
 
 
-fn get_inputs(args: Vec<String>, input_path: &mut PathBuf, herz: &mut Option<u32>) {
+fn get_inputs(args: Vec<String>, input_path: &mut PathBuf, memory_storage_path: &mut Option<PathBuf>, herz: &mut Option<u32>) {
     if args.contains(&"-v".to_string()){
         // Visual setup
         let dialog = FileDialog::new();
@@ -44,6 +52,10 @@ fn get_inputs(args: Vec<String>, input_path: &mut PathBuf, herz: &mut Option<u32
     *input_path = PathBuf::from(get_parameter("-f", args.clone()));
     if args.contains(&"-hz".to_string()){
         *herz = Some(get_parameter_uint("-hz", args.clone()) as u32);
+    }
+    if args.contains(&"-ms".to_string()){
+        println!("arguments contain söasdkjf -ms");
+        *memory_storage_path = Some(PathBuf::from(get_parameter("-ms", args.clone())));
     }
 }
 
