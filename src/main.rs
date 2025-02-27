@@ -31,8 +31,6 @@ fn main() {
     machine.execute(herz);
 
     if memory_storage_path.is_some() {
-
-        println!("astoring -ms {:?}", memory_storage_path.clone().unwrap());
         let binary_file = File::create(memory_storage_path.unwrap());
         _ = binary_file.unwrap().write_all(&machine.memory);
     }
