@@ -14,6 +14,8 @@ pub struct Instruction{
 // 011: Other internal (mov, etc)
 // 000: Memory OP
 // 001: Reserved for future applications
+pub const STANDARD_OUTPUT_WRITE_INSTRUCTION: u8 = 0b0000_0001;
+pub const STANDARD_OUTPUT_CLEAR_INSTRUCTION: u8 = 0b0000_0010;
 pub const ADD_INSTRUCTION: u8 = 0b0100_0000;
 pub const SUB_INSTRUCTION: u8 = 0b0100_0001;
 pub const MUL_INSTRUCTION: u8 = 0b0100_0010;
@@ -58,6 +60,8 @@ impl Instruction{
             LOAD_BYTE_INSTRUCTION => Some("ldb ".to_string() + arg_1_text + arg_2_text),
             STORE_BYTE_INSTRUCTION => Some("stb ".to_string() + arg_1_text + arg_2_text),
             POP_BYTE_INSTRUCTION => Some("popb ".to_string() + arg_1_text),
+            STANDARD_OUTPUT_WRITE_INSTRUCTION => Some("sow ".to_string() + arg_1_text),
+            STANDARD_OUTPUT_CLEAR_INSTRUCTION => Some("soc ".to_string()),
             _ => None
         }
     }

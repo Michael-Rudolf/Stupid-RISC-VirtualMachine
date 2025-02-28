@@ -29,6 +29,7 @@ impl Machine {
         println!("Executing: {:?}", instruction::Instruction::name_of_instruction(instruction, operand_1, operand_2).unwrap_or("nothing.".to_string()));
         // Print the registers
         self.print_registers();
+        println!("{}", self.standard_output);
 
         // Update the execution pointer
         self.execution_pointer += 3;
@@ -64,6 +65,15 @@ impl Machine {
                 result = Some(self.memory[(self.stack_pointer as usize)+1] as i32);
                 self.stack_pointer -= 1;
                 ticks = 9;
+            }
+            instruction::STANDARD_OUTPUT_WRITE_INSTRUCTION => {
+                let std_out = self.clone().standard_output;
+                self.standard_output = std_out + ((data_1 as u8) as char).to_string().as_ref();
+                ticks = 3;
+            }
+            instruction::STANDARD_OUTPUT_CLEAR_INSTRUCTION => {
+                self.standard_output = "".to_string();
+                ticks = 3;
             }
             instruction::LOAD_BYTE_INSTRUCTION => { result = Some(self.memory[data_2 as usize] as i32); ticks = 5 },
             instruction::STORE_BYTE_INSTRUCTION => { self.memory[data_2 as usize] = data_1 as u8; ticks = 5 },

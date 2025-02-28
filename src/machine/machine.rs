@@ -6,13 +6,18 @@ pub struct Machine {
     pub stack_pointer: u32,
     pub frame_pointer: u32,
     pub execution_pointer: u32,
+    pub standard_output: String,
+}
+
+impl Clone for Machine {
+    fn clone(&self) -> Self { Machine { memory: self.memory, general_registers: self.general_registers, flags: self.flags, stack_pointer: self.stack_pointer, frame_pointer: self.frame_pointer, execution_pointer: self.execution_pointer, standard_output: self.standard_output.clone() } }
 }
 
 impl Machine {
     pub fn new() -> Machine {
         let memory: [u8; 4096] = [0; 4096];
         let general_registers: [i32; 12] = [0; 12];
-        Machine{memory, general_registers, flags: 0, stack_pointer: (memory.len() as u32)-1, frame_pointer: 0, execution_pointer: 0}
+        Machine{memory, general_registers, flags: 0, stack_pointer: (memory.len() as u32)-1, frame_pointer: 0, execution_pointer: 0, standard_output: "".to_string()}
     }
 
     pub fn set_ram(&mut self, address: usize, data: Vec<u8>) {
