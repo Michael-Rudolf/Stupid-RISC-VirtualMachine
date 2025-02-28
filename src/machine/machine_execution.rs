@@ -60,6 +60,11 @@ impl Machine {
                 result = Some(data_1 - 1);
                 ticks = 9;
             },
+            instruction::POP_BYTE_INSTRUCTION => {
+                result = Some(self.memory[(self.stack_pointer as usize)+1] as i32);
+                self.stack_pointer -= 1;
+                ticks = 9;
+            }
             instruction::LOAD_BYTE_INSTRUCTION => { result = Some(self.memory[data_2 as usize] as i32); ticks = 5 },
             instruction::STORE_BYTE_INSTRUCTION => { self.memory[data_2 as usize] = data_1 as u8; ticks = 5 },
             _=> result = None

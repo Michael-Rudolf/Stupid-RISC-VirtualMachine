@@ -23,6 +23,7 @@ pub const HALT_INSTRUCTION: u8 = 0b0110_0000;
 pub const MOVE_INSTRUCTION: u8 = 0b0110_0001;
 pub const JUMP_INSTRUCTION: u8 = 0b0110_0010;
 pub const PUSH_BYTE_INSTRUCTION: u8 = 0b0110_0101;
+pub const POP_BYTE_INSTRUCTION: u8 = 0b0110_1100;
 // Jumps to arg2 if arg1 is 0
 pub const JUMP_ZERO_INSTRUCTION: u8 = 0b0110_0011;
 pub const LOAD_BYTE_INSTRUCTION: u8 = 0b0110_0100;
@@ -56,6 +57,7 @@ impl Instruction{
             JUMP_ZERO_INSTRUCTION => Some("jmpz ".to_string() + arg_1_text + arg_2_text),
             LOAD_BYTE_INSTRUCTION => Some("ldb ".to_string() + arg_1_text + arg_2_text),
             STORE_BYTE_INSTRUCTION => Some("stb ".to_string() + arg_1_text + arg_2_text),
+            POP_BYTE_INSTRUCTION => Some("popb ".to_string() + arg_1_text),
             _ => None
         }
     }
