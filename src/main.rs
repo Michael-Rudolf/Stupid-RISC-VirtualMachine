@@ -52,7 +52,6 @@ fn get_inputs(args: Vec<String>, input_path: &mut PathBuf, memory_storage_path: 
         *herz = Some(get_parameter_uint("-hz", args.clone()) as u32);
     }
     if args.contains(&"-ms".to_string()){
-        println!("arguments contain söasdkjf -ms");
         *memory_storage_path = Some(PathBuf::from(get_parameter("-ms", args.clone())));
     }
 }
