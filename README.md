@@ -35,3 +35,19 @@ sriscvm(){
     (cd ~/path/to/virtual_machine && ./VirtualMachine "${args[@]}")
 }
 ```
+
+## Flags
+### -f
+With the -f flag, you can provide the binary file to execute (the assembled file, probably).
+
+### -hz
+You can set the machine to target a specific speed using the -hz flag. Please note that this will never reach the target speed, but just wait an additional time.
+
+### -ms
+With the memory store flag (*-ms*), you can store the machines DRAM to a binary file at the end of execution. The file needs to be created (```touch mem_sto_file.bin```) before that.
+
+### Example
+Here is an example usage with all the flags:
+```shell
+sriscvm -hz 20 -f main.bin -ms mem_sto_file.bin
+```
