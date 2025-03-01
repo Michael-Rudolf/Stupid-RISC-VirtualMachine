@@ -54,7 +54,7 @@ impl Instruction{
             MOD_INSTRUCTION => Some("mod ".to_string() + arg_1_text + arg_2_text),
             HALT_INSTRUCTION => Some("halt ".to_string()),
             MOVE_INSTRUCTION => Some("mov ".to_string() + arg_1_text + arg_2_text),
-            JUMP_INSTRUCTION => Some("jmp ".to_string() + arg_2_text),
+            JUMP_INSTRUCTION => Some("jmp ".to_string() + arg_1_text),
             PUSH_BYTE_INSTRUCTION => Some("pushb ".to_string() + arg_1_text + arg_2_text),
             JUMP_ZERO_INSTRUCTION => Some("jmpz ".to_string() + arg_1_text + arg_2_text),
             LOAD_BYTE_INSTRUCTION => Some("ldb ".to_string() + arg_1_text + arg_2_text),
