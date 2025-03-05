@@ -3,6 +3,10 @@
 ## What is this?
 This is a Virtual Machine (pretty self explanatory) that supports my "Stupid RISC" instruction set which you can find under https://github.com/Michael-Rudolf/Stupid-RISC-instruction-set.
 
+## Table of contents 
+- [Installation](Readme.md#Installation)
+- [Flags](Readme.md#Flags)
+
 ## Installation
 ### This programm can't actually be installed, but it can be aliased.
 To perform this, please build it first.
