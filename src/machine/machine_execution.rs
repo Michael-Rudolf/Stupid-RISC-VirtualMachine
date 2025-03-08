@@ -6,15 +6,15 @@ use colored::Colorize;
 
 impl Machine {
 
-    pub fn execute(&mut self, herz: Option<u32>){
+    pub fn execute(&mut self, hertz: Option<u32>){
         let start_time = Instant::now();
         while self.flags & 0x4000_0000 < 1 && self.execution_pointer < 100 {
-            self.execute_line(herz);
+            self.execute_line(hertz);
         }
         let duration = Instant::now().duration_since(start_time);
         println!("{}", format!("Execution finished after: {:?}", duration).green());
     }
-    pub fn execute_line(&mut self, herz: Option<u32>) {
+    pub fn execute_line(&mut self, hertz: Option<u32>) {
         // Check halt bit & potentially avoid further execution
         if self.flags & 0x4000_0000 >= 1 { return; }
 
@@ -89,8 +89,8 @@ impl Machine {
         // Update the execution pointer
         self.execution_pointer += execution_pointer_inc;
 
-        if let Some(herz) = herz {
-            let wait_time_s = 1. / (herz as f32) * ticks as f32;
+        if let Some(hertz) = hertz {
+            let wait_time_s = 1. / (hertz as f32) * ticks as f32;
             let mut command = Command::new("sleep").arg(wait_time_s.to_string()).spawn().unwrap();
             let _result = command.wait().unwrap();
         }
