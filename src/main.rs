@@ -10,11 +10,11 @@ mod machine;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let mut herz: Option<u32> = None;
+    let mut hertz: Option<u32> = None;
     let mut input_path: PathBuf = Default::default();
     let mut memory_storage_path: Option<PathBuf> = None;
 
-    get_inputs(args, &mut input_path, &mut memory_storage_path, &mut herz);
+    get_inputs(args, &mut input_path, &mut memory_storage_path, &mut hertz);
 
     // Open the path in read-only mode, returns `io::Result<File>`
     let mut file = match File::open(&input_path) {
@@ -28,7 +28,7 @@ fn main() {
     let mut machine = machine::machine::Machine::new();
     machine.set_ram(0, buffer);
 
-    machine.execute(herz);
+    machine.execute(hertz);
 
     if memory_storage_path.is_some() {
         let binary_file = File::create(memory_storage_path.unwrap());

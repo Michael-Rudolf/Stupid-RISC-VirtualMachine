@@ -58,7 +58,7 @@ impl Machine {
                 execution_pointer_inc = 3;
             }
             instruction::PUSH_BYTE_INSTRUCTION => {
-                self.memory[self.stack_pointer as usize] = data_2 as u8;
+                self.memory[self.stack_pointer as usize] = data_1 as u8;
                 self.stack_pointer -= 1;
                 ticks = 9;
                 execution_pointer_inc = 2;
