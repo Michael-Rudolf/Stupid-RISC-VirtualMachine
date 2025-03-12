@@ -47,7 +47,7 @@ fn get_inputs(args: Vec<String>, input_path: &mut PathBuf, memory_storage_path: 
         return;
     }
     // Command line args setup
-    *input_path = PathBuf::from(get_parameter("-f", args.clone()));
+    *input_path = PathBuf::from(args.clone().last().unwrap());//get_parameter("-f", args.clone()));
     if args.contains(&"-hz".to_string()){
         *herz = Some(get_parameter_uint("-hz", args.clone()) as u32);
     }
