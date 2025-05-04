@@ -39,19 +39,45 @@ sriscvm(){
     (cd ~/path/to/virtual_machine && ./VirtualMachine "${args[@]}")
 }
 ```
+*This is most likely going to be /bin in Linux, /bin or ~/Applications on MacOS and more or less arbitrary on Windows.*
 
 ## Flags
 ### Last Argument
 Though technically not a flag, it almost acts as one (and was the -f flag previously). This is the file to be executed.
 
 ### -hz
-You can set the machine to target a specific speed using the -hz flag. Please note that this will never reach the target speed, but just wait an additional time.
+You can set the machine to target a specific speed using the -hz flag. Please note that this will never reach the target speed,
+but just wait an additional time.
 
 ### -ms
-With the memory store flag (*-ms*), you can store the machines DRAM to a binary file at the end of execution. The file needs to be created (```touch mem_sto_file.bin```) before that.
+With the memory store flag (*-ms*), you can store the machines DRAM to a binary file at the end of execution. 
+The file needs to be created (```touch mem_sto_file.bin```) before that.
 
 ### Example
 Here is an example usage with all the flags:
 ```shell
 sriscvm -hz 20 -f main.bin -ms mem_sto_file.bin
 ```
+
+## Commands
+Commands are used during execution to quit it, read variables or modify them (upcoming). Using them will pause execution.
+
+### Beahaviour
+To enter a command **press any key** (preferably letters, there are still issues especially with newlines),
+which will pause execution. A colon will appear to indicate this.
+You can now type any command or use r or **return** to continue with execution.
+
+### Quit
+The **quit** command or **q** to leave the program.
+Note that this will also delete the alternate screen buffer.
+
+### Memory Get
+The **memget** command (or **mg** or **mem-get" will get the memory at the given index (starting at 0).
+
+Example:
+```
+mem-get 100
+```
+*This would retrieve the memory address 100 and output it in **decimal***
+
+There are more commands upcoming.
