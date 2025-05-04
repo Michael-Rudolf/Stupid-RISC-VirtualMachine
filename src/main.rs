@@ -2,6 +2,7 @@ use rfd::FileDialog;
 use std::fs::File;
 use std::io::prelude::*;
 use std::env;
+use std::io::{stdout, Write};
 use std::path::PathBuf;
 use colored::Colorize;
 
@@ -28,7 +29,16 @@ fn main() {
     let mut machine = machine::machine::Machine::new();
     machine.set_ram(0, buffer);
 
+
+    // Switch to alternate screen
+    println!("\x1b[?1049h");
+
+
     machine.execute(hertz);
+
+    // Switch back
+    print!("\x1b[?1049l");
+    stdout().flush().unwrap(); // Force-flush the buffer
 
     if memory_storage_path.is_some() {
         let binary_file = File::create(memory_storage_path.unwrap());

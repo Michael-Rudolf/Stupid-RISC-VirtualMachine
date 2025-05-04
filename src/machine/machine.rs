@@ -57,4 +57,6 @@ impl Machine {
 
         println!("FLAGS:    0x{:08X}      EXE_PTR:  0x{:08x}      FRA_PTR:  0x{:08x}      STK_PTR:  0x{:08x}", self.flags, self.execution_pointer, self.frame_pointer, self.stack_pointer);
     }
+
+
 }
