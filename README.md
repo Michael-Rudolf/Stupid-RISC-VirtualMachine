@@ -41,8 +41,8 @@ sriscvm(){
 ```
 
 ## Flags
-### -f
-With the -f flag, you can provide the binary file to execute (the assembled file, probably).
+### Last Argument
+Though technically not a flag, it almost acts as one (and was the -f flag previously). This is the file to be executed.
 
 ### -hz
 You can set the machine to target a specific speed using the -hz flag. Please note that this will never reach the target speed, but just wait an additional time.
